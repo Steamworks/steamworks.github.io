@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steamworks.NET - Frequently Asked Questions</title>
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/css/theme.css" type="text/css" />
+
+
+  <script type="text/javascript" src="/js/theme.js"></script>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/toc.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.toc').toc();
+    });
+  </script>
+
+  <link rel="stylesheet" href="/css/github.css">
+  <script type="text/javascript" src="/js/highlight.pack.js"></script>
+  <script type="text/javascript">hljs.initHighlightingOnLoad();</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+
+  <style>
+    body {font-size: 90%;}
+    pre, code {font-size: 100%;}
+    h3, h4, h5, h6 {color: #2980b9; font-weight: 300}
+    h1:first-of-type {
+      text-align: center;
+      font-weight: 300;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="/" class="icon icon-home"> Steamworks.NET</a>
+        <!--<div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>-->
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+      <ul class="current">
+    
+        
+        
+
+    <li class="toctree-l1 ">
+        <a class="" href="/installation/">Installation</a>
+        
+    </li>
+    
+        
+        
+
+    <li class="toctree-l1 ">
+        <a class="" href="/gettingstarted/">Getting started</a>
+        
+    </li>
+    
+        
+        
+
+    <li class="toctree-l1 ">
+        <a class="" href="/introduction/">Introduction to Steamworks</a>
+        
+    </li>
+    
+        
+        
+
+    <li class="toctree-l1 ">
+        <a class="" href="/snippits/">Code Snippits</a>
+        
+    </li>
+    
+        
+        
+            
+        
+
+    <li class="toctree-l1 current">
+        <a class="current" href="/faq/">Frequently Asked Questions</a>
+        <div class="toc"></div>
+    </li>
+    
+        
+        
+
+    <li class="toctree-l1 ">
+        <a class="" href="/support/">Support</a>
+        
+    </li>
+    
+        
+        
+
+    <li class="toctree-l1 ">
+        <a class="" href="/games/">Games using Steamworks.NET</a>
+        
+    </li>
+    
+        
+        
+
+    <li class="toctree-l1 ">
+        <a class="" href="/changelog/">Changelog</a>
+        
+    </li>
+    
+</ul>
+
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="icon icon-reorder"></i>
+        <a href="/"></a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="/">Docs</a> &raquo;</li>
+    <li>Frequently Asked Questions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+
+          <div role="main">
+            <h1>Frequently Asked Questions</h1>
+            <hr>
+            <h3 id="can-steamworksnet-be-used-within-the-steam-editor">Can Steamworks.NET be used within the Steam Editor?</h3>
+
+<p>Yes absolutely!</p>
+
+<p>The only downside is the Steam Overlay does not function well or often even at all within the editor due to the number of unique windows, so keep that in mind when testing out aspects of Steamworks that require the Overlay to be available such as the Steam Controller or Microtransactions.</p>
+
+<h3 id="steam-says-im-in-game-constantly-after-playing-in-the-editor">Steam says I’m in game constantly after playing in the editor</h3>
+
+<p>Steam will only recognize a game as having shutdown when the last dependent process has quit. This is normal and does not affect the usage of Steamworks.NET.</p>
+
+<h3 id="the-steam-overlay-doesnt-work-or-causes-rendering-errors">The Steam Overlay doesn’t work or causes rendering errors!</h3>
+
+<p>There are many cases where the overlay collides with Unity, unfortunately it happens regardless of using Steamworks.NET and we are unable to resolve Steam Overlay issues as it is out of our control.</p>
+
+<p>Some such causes that are known to cause the overlay to break are:</p>
+
+<ul>
+  <li>The Overlay is not supported in the editor.</li>
+  <li>The Overlay is not supported when run from outside of steam.</li>
+  <li>There are incompatabilities between Unity and the Steam Overlay when running under DirectX11</li>
+</ul>
+
+<h3 id="what-languages-does-steamworksnet-support">What languages does Steamworks.NET support?</h3>
+
+<p>In theory it should work with any .NET based language! Documentation is only provided for C#, but many people have used it from UnityScript as well. Let me know if you’re using it from Boo!</p>
+
+<h3 id="unity-standalone-builds-dont-launch">Unity Standalone builds don’t launch</h3>
+
+<p>You are likely missing the steam_appid.txt from your </p>
+
+<h3 id="steam-only-shows-me-playing-spacewar-how-do-i-change-it-to-my-game">Steam only shows me playing ‘SpaceWar’ how do I change it to my game?</h3>
+
+<p>When you launch your game from outside of Steam it relies on steam_appid.txt to be present to let steam know what is being launched. To change from SpaceWar to your own game you must edit the steam_appid.txt which is found in the root of your Unity project, or next to your built .exe/.app. Replace ‘480’ with your Valve provided AppId.</p>
+
+<h3 id="does-the-steam-drm-wrapper-work-with-unity-or-xnamonogame">Does the Steam DRM wrapper work with Unity or XNA/Monogame?</h3>
+
+<p>No it doesn’t. Unfortunately The DRM wrapper does not play well with .NET applications such as Unity and your application will likely fail to start if it’s wrapped. Even if it does succeed and work for you it will often fail on other computers.</p>
+
+<h3 id="do-i-need-the-pro-version-of-unity-to-use-steamworksnet">Do I need the Pro version of Unity to use Steamworks.NET?</h3>
+
+<p>Officially Yes.</p>
+
+<h3 id="the-achievement-popup-only-occurs-after-i-quit-my-game">The achievement popup only occurs after I quit my game.</h3>
+
+<p>This is most likely caused by not calling <code>SteamAPI.RunCallbacks()</code> in your game or not calling <code>SteamUserStats.StoreStats()</code> after you set an achievement.</p>
+
+<h3 id="does-steamworksnet-work-with-unity-35-or-earlier">Does Steamworks.NET work with Unity 3.5 or earlier?</h3>
+
+<p>Not out of the box no. Unity 3.5 lacks some key features and supporting it was holding the rest of the project back.</p>
+
+<p>If you wish to use Steamworks.NET with Unity 3.5 the following changes must be made:</p>
+
+<ul>
+  <li>Remove BuildTarget.StandaloneOSXIntel64 and BuildTarget.StandaloneOSXUniversal from RedistCopy.cs</li>
+  <li>Copy CSteamworks.dll from Assets/Plugins/x86 out to Assets/Plugins as Unity 3.5 did not support the x86 and x86_64 special folders and won’t be able to find or copy the file over. (Feel free to delete the x86_64 folder, and the x86 folder after the fact. The .so files are for Linux only which Unity 3.5 did not support)</li>
+  <li>Unity 3.5 did not support the UNITY_EDITOR_WIN platform define. This can cause a number of issues. The first is that steam_api.dll does not get copied over from Assets/Plugins/Steamworks.NET/redist to the Project root automatically, you must do this manually.</li>
+  <li>The second issue that you must worry about is your build target while playing in the editor MUST be set to the editors platform. You will likely get a crash otherwise.</li>
+</ul>
+
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+    <!-- Copyright etc -->
+    </p>
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a>, using the <a href="https://github.com/snide/sphinx_rtd_theme">Read the Docs theme</a>.
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <a href="" target="about:blank" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      <span><a href="" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      <span style="margin-left: 15px"><a href="" style="color: #fcfcfc">Next &raquo;</a></span>
+    </span>
+</div>
+</body>
+</html>

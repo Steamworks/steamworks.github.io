@@ -160,7 +160,7 @@ div.rst-content dd {
 }
 div.rst-content li{
 	list-style: circle;
-	margin-left: 4px;
+	margin-left: 18px;
 }
 
 img {
@@ -3616,8 +3616,6 @@ pre.literal-block {
 
 .cs {
     color: #999;
-    font-weight: bold;
-    font-style: italic;
 }
 
 .gd {

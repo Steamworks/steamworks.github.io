@@ -164,9 +164,13 @@
 
 <p>The SteamManager script provides a great starting point for your project and I would highly recommend utilizing it in your project as it will signifigently cut down on the time required to get up and running.</p>
 
-<p>Simply download the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> script into your project and add it to a GameObject in your first scene!</p>
+<p>If you are using Steamworks.NET from the .unitypackage you can import it directly into your project. Otherwise if you have cloned Steamworks.NET from Github you must download the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> script manually.</p>
 
-<p>I would first recommend trying out an easy SteamAPI method call.</p>
+<p>Once the SteamManager script is in your project simply create a new empty GameObject in your first scene and add the SteamManager script to it.</p>
+
+<p>You can now be able to launch your game and Steam should show you in-game.</p>
+
+<p>I would then recommend trying out an easy SteamAPI method call.</p>
 
 <p>We’ll create a new script called <code>SteamScript.cs</code>:</p>
 
@@ -178,8 +182,6 @@ using Steamworks;</code></pre>
 
 <p>Next we’ll add our function call which gets the display name of the Steam user like so.</p>
 
-<p>Note that we ALWAYS ensure that Steam is initalized by checking SteamManager.Initialized before calling any Steamworks functions.</p>
-
 <pre><code>public class SteamScript : MonoBehaviour {
 	void Start() {
 		if(SteamManager.Initialized) {
@@ -189,6 +191,8 @@ using Steamworks;</code></pre>
 	}
 }</code></pre>
 
+<p>Note that we ALWAYS ensure that Steam is initalized by checking SteamManager.Initialized before calling any Steamworks functions.</p>
+
 <p>Now just add the script to a GameObject and try it out!</p>
 
 <p>If you run into any issues have a look at the <a href="/faq/">Frequently Asked Questions</a> to see if it’s covered in there!</p>
@@ -197,7 +201,7 @@ using Steamworks;</code></pre>
 
 <h3 id="steam-callbacks">Steam Callbacks</h3>
 
-<p>Callbacks are an important feature of Steamworks, they allow you to retrieve data from Steam without locking up your game.</p>
+<p>Callbacks are an important feature of Steamworks, they allow you to retrieve data asynchronously from Steam without locking up your game.</p>
 
 <p>One such Callback that you will likely wish to utilize is called <code>GameOverlayActivated_t</code>. As the name implies it sends you a callback every time the Steam Overlay is activated or deactivated.</p>
 
@@ -290,11 +294,11 @@ using Steamworks;</code></pre>
 	}
 
 	private void OnNumberOfCurrentPlayers(NumberOfCurrentPlayers_t pCallback, bool bIOFailure) {
-		if (pCallback.m_bSuccess &amp;&amp; bIOFailure) {
-			Debug.Log("The number of players playing your game: " + pCallback.m_cPlayers);
+		if (pCallback.m_bSuccess != 1 || bIOFailure) {
+			Debug.Log("There was an error retrieving the NumberOfCurrentPlayers.");
 		}
 		else {
-			Debug.Log("There was an error retrieving the NumberOfCurrentPlayers.");
+			Debug.Log("The number of players playing your game: " + pCallback.m_cPlayers);
 		}
 	}
 }</code></pre>
@@ -313,17 +317,17 @@ using Steamworks;</code></pre>
 	private void Update() {
 		if(Input.GetKeyDown(KeyCode.Space)) {
 			SteamAPICall_t handle = SteamUserStats.GetNumberOfCurrentPlayers();
-			NumberOfCurrentPlayers.Set(handle);
-			Debug.Log("Called GetNumberOfCurrentPlayers");
+			m_NumberOfCurrentPlayers.Set(handle);
+			Debug.Log("Called GetNumberOfCurrentPlayers()");
 		}
 	}
 
 	private void OnNumberOfCurrentPlayers(NumberOfCurrentPlayers_t pCallback, bool bIOFailure) {
-		if (pCallback.m_bSuccess &amp;&amp; bIOFailure) {
-			Debug.Log("The number of players playing your game: " + pCallback.m_cPlayers);
+		if (pCallback.m_bSuccess != 1 || bIOFailure) {
+			Debug.Log("There was an error retrieving the NumberOfCurrentPlayers.");
 		}
 		else {
-			Debug.Log("There was an error retrieving the NumberOfCurrentPlayers.");
+			Debug.Log("The number of players playing your game: " + pCallback.m_cPlayers);
 		}
 	}
 }</code></pre>

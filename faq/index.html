@@ -176,17 +176,19 @@
 
 <ul>
   <li>The Overlay is not supported in the editor.</li>
-  <li>The Overlay is not supported when run from outside of steam.</li>
+  <li>The Overlay is not supported when running from outside of steam.¹</li>
   <li>There are incompatabilities between Unity and the Steam Overlay when running under DirectX11</li>
 </ul>
+
+<p>¹ For the Steam Overlay to work it must be injected before the renderer (DirectX/OpenGL) gets initialized. This is not feasible from Unity as Scripts only start running after the renderer is set up and injection is done in <code>SteamAPI.Init()</code>. It works when launched through Steam as Steam will always inject the overlay as the process starts.</p>
 
 <h3 id="what-languages-does-steamworksnet-support">What languages does Steamworks.NET support?</h3>
 
 <p>In theory it should work with any .NET based language! Documentation is only provided for C#, but many people have used it from UnityScript as well. Let me know if you’re using it from Boo!</p>
 
-<h3 id="unity-standalone-builds-dont-launch">Unity Standalone builds don’t launch</h3>
+<h3 id="my-unity-standalone-build-doesnt-launch">My Unity Standalone build doesn’t launch!</h3>
 
-<p>You are likely missing the steam_appid.txt from your </p>
+<p>You are likely missing the steam_appid.txt from your output folder. Steamworks.NET does not copy it over automatically because it is not something that you should be shipping to customers.</p>
 
 <h3 id="steam-only-shows-me-playing-spacewar-how-do-i-change-it-to-my-game">Steam only shows me playing ‘SpaceWar’ how do I change it to my game?</h3>
 

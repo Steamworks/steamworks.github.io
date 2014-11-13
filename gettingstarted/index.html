@@ -84,7 +84,7 @@
         
 
     <li class="toctree-l1 ">
-        <a class="" href="/introduction/">Introduction to Steamworks</a>
+        <a class="" href="/steammanager/">SteamManager</a>
         
     </li>
     
@@ -162,19 +162,21 @@
 
 <p>After completing the <a href="/installation/">Installation</a> steps you can start using Steamworks.NET in your project.</p>
 
-<p>The SteamManager script provides a great starting point for your project and I would highly recommend utilizing it in your project as it will signifigently cut down on the time required to get up and running.</p>
+<p>The SteamManager script provides the ideal starting point for your project and I would highly recommend utilizing it as it will signifigently cut down on the time required to get up and running.</p>
 
-<p>If you are using Steamworks.NET from the .unitypackage you can import it directly into your project. Otherwise if you have cloned Steamworks.NET from Github you must download the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> script manually.</p>
+<p>If you are using Steamworks.NET from the .unitypackage you can import it directly into your project. Otherwise if you have cloned Steamworks.NET from Github you must download the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager.cs</a> script manually.</p>
 
 <p>Once the SteamManager script is in your project simply create a new empty GameObject in your first scene and add the SteamManager script to it.</p>
 
 <p>You can now be able to launch your game and Steam should show you in-game.</p>
 
-<p>I would then recommend trying out an easy SteamAPI method call.</p>
+<hr />
+
+<p>Next, once you have that working I would then recommend trying out an easy SteamAPI method call.</p>
 
 <p>We’ll create a new script called <code>SteamScript.cs</code>:</p>
 
-<p>First we’ll add using Steamworks; to the file,</p>
+<p>First we’ll add <code>using Steamworks;</code> to the file.</p>
 
 <pre><code>using UnityEngine;
 using System.Collections;
@@ -207,15 +209,15 @@ using Steamworks;</code></pre>
 
 <p>To use it we will continue with our script from earlier.</p>
 
-<p>To use Callbacks in Steamworks.NET you first declare a protected Callback&lt;&gt; at class scope as a member variable to old onto the Callback.</p>
+<p>To use Callbacks in Steamworks.NET you first declare a <code>protected Callback&lt;&gt;</code> at class scope as a member variable to hold onto the Callback.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	protected Callback&lt;GameOverlayActivated_t&gt; m_GameOverlayActivated;
 }</code></pre>
 
-<p>We then create our Callback by calling Callback&lt;&gt;.Create() and assigning it to m_GameOverLayActivated.</p>
+<p>We then create our Callback by calling <code>Callback&lt;&gt;.Create()</code> and assigning it to m_GameOverLayActivated.</p>
 
-<p>We do this in OnEnable as that allows us to recreate the Callback after Unity does an assembly reload.</p>
+<p>We do this in OnEnable as that allows us to recreate the Callback after Unity reloads assemblies.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	protected Callback&lt;GameOverlayActivated_t&gt; m_GameOverlayActivated;
@@ -262,13 +264,13 @@ using Steamworks;</code></pre>
 
 <p>In Steamworks.NET setting up a CallResult is nearly identical to Callbacks!</p>
 
-<p>First we declare a CallResult&lt;&gt; at class scope as a member variable.</p>
+<p>First we declare a <code>CallResult&lt;&gt;</code> at class scope as a member variable.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	private CallResult&lt;NumberOfCurrentPlayers_t&gt; m_NumberOfCurrentPlayers;
 }</code></pre>
 
-<p>Next we can create our CallResult with <code>CallResult&amp;lt;&amp;gt;.Create</code>. Once again we do this in OnEnable so that it gets recreated every time Unity reloads the assembilies.</p>
+<p>Next we can create our CallResult with <code>CallResult&lt;&gt;.Create</code>. Once again we do this in OnEnable so that it gets recreated every time Unity reloads the assembilies.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	private CallResult&lt;NumberOfCurrentPlayers_t&gt; m_NumberOfCurrentPlayers;
@@ -334,199 +336,11 @@ using Steamworks;</code></pre>
 
 <p>And that’s it for CallResults!</p>
 
+<p>For both Callbacks and CallResults you must be calling <code>SteamAPI.RunCallbacks</code> on a regular basis. <a href="http://localhost:4000/steammanager/#steamapiruncallbacks">This is done in SteamManager</a>.</p>
+
 <p>Now that you have familiarized yourself with the building blocks of Steamworks check out the <a href="https://github.com/rlabrecque/">Steamworks.NET Example</a> application to see an industrial strength implementation of Steamworks Stats and Achievements!</p>
 
-<h2 id="how-the-steammanager-script-works">How the SteamManager script works</h2>
-
-<p>You will likely wish to make changes to SteamManager yourself and understanding why it does what it does is an important step to fully mastering Steamworks.</p>
-
-<h3 id="boilerplate">Boilerplate</h3>
-
-<p>All the below code is wrapped within a MonoBehavior class so that it can be added to a GameObject.</p>
-
-<pre><code>using UnityEngine;
-using System.Collections;
-using Steamworks;
-
-class SteamManager : MonoBehaviour {
-
-}</code></pre>
-
-<h3 id="persistent-gameobjectsingleton-logic">Persistent GameObject/Singleton logic</h3>
-
-<p>The SteamManager script relies on being created once and persisting throughout the duration of the game. This involves some rather heavy logic to integrate with Unity’s GameObject system.</p>
-
-<p>We use a “Self-Creating Persistent Singleton” to accomplish this. You can read more about singletons in the wonderful <a href="http://unitypatterns.com/singletons/">UnityPatterns</a> guidebook.</p>
-
-<p>With this pattern you can use the SteamManager from any scene in your game without having to manually place a SteamManager GameObject in each one. As usual refrain from interacting with the SteamManager from Awake() or OnDestroy() in other scripts as the execution order is not garenteed.</p>
-
-<p>If you already have a method of maintaining global state in your game you may wish to replace this with your own method.</p>
-
-<pre><code>private static SteamManager s_instance;
-private static SteamManager Instance {
-	get {
-		return m_instance ?? new GameObject("SteamManager").AddComponent&lt;SteamManager&gt;();
-	}
-}
-
-private void Awake() {
-	if (s_instance != null) {
-		Destroy(gameObject);
-		return;
-	}
-	s_instance = this;
-
-	DontDestroyOnLoad(gameObject);
-}
-
-private void OnEnable() {
-	if (s_instance == null) {
-		s_instance = this;
-	}
-}
-
-private void OnDestroy() {
-	if (m_instance != this) {
-		return;
-	}
-	s_instance = null;
-}</code></pre>
-
-<h3 id="sanity-checks">Sanity Checks</h3>
-
-<p>Steamworks.NET provides a couple non-essential sanity checks to ensure that Steamworks.NET is being used correctly.</p>
-
-<p><code>Packsize.Test()</code> ensures that Steamworks.NET is running under the correct platform, In Unity under normal operation this should never return false.</p>
-
-<p><code>DllCheck.Test()</code> checks to make sure the Steamworks redistributable binaries are the correct version. This is particularily useful when you upgrade Steamworks.NET, Especially if you are not using the Steamworks.NET editor scripts. Running Steamworks.NET with the wrong steam_api.dll can potentially have problamatic consequences.</p>
-
-<pre><code>if (!Packsize.Test()) {
-	Debug.LogError("[Steamworks.NET] Packsize Test returned false, the wrong version of Steamworks.NET is being run in this platform.", this);
-}
-
-if (!DllCheck.Test()) {
-	Debug.LogError("[Steamworks.NET] DllCheck Test returned false, One or more of the Steamworks binaries seems to be the wrong version.", this);
-}</code></pre>
-
-<h3 id="steamapirestartappifnecessary">SteamAPI.RestartAppIfNecessary</h3>
-
-<p>The first Steamworks function call which the script makes is <code>SteamAPI.RestartAppIfNecessary((AppId)480)</code>. Replace 480 with your own AppId.</p>
-
-<p>SteamAPI.RestartAppIfNecessary() detects if the Steam client is running, if Steam is not running or the game wasn’t started through Steam. It will return true if a Restart is needed. If it returns true it starts the Steam client if required and launches your game again through it, you should then manually close your application as quickly as possible.</p>
-
-<p>If it returns false, your game was launched by the Steam client and execution continues as normal.</p>
-
-<p>If the steam_appid.txt file is present in the current working directory then SteamAPI_RestartAppIfNecessary() will return false.</p>
-
-<p>Being that this is the first Steamworks function which gets called this is the ideal location to ensure that the steam_api.dll and CSteamworks.dll can be infact be loaded. This is accomplished by wrapping this function call in a try..catch block.</p>
-
-<pre><code>private void Awake() {
-	try {
-		if (SteamAPI.RestartAppIfNecessary((AppId)480)) {
-				Application.Quit();
-				return;
-			}
-		}
-	catch (System.DllNotFoundException e) {
-		Debug.LogError("[Steamworks.NET] Could not load [lib]steam_api.dll/so/dylib. It's likely not in the correct location. Refer to the README for more details.\n" + e, this);
-
-		Application.Quit();
-		return;
-	}
-}</code></pre>
-
-<h3 id="steamapiinit">SteamAPI.Init</h3>
-
-<p>The second Steamworks function which should be called is to <code>SteamAPI.Init()</code>, This start’s the SteamAPI and must be called before any other Steamworks functions are called.</p>
-
-<p>If SteamAPI.Init() returns true then everything has been set up to proceede using Steamworks.NET</p>
-
-<p>Otherwise a return value of false is caused by one of three issues.</p>
-
-<ul>
-  <li>The Steam Client is not running. A running Steam client is required to provide implementations of the various Steamworks interfaces.</li>
-  <li>The Steam client couldn’t determine the AppID of game. Make sure you have steam_appid.txt in your game directory. This should never happen when launching your game when downloaded through Steam, as SteamAPI.RestartAppIfNecessary() will relaunch it through Steam.</li>
-  <li>Ensure that your application is running under the same user context as the Steam client, including admin privledges.</li>
-</ul>
-
-<p>If you’re running into Init issues try running Microsoft’s <a href="http://technet.microsoft.com/en-us/sysinternals/bb896647.aspx">DbgView</a> prior to launching to get the internal output from Steam.</p>
-
-<p>SteamManager exposes the Initialized property publicly which you can use from other scripts to ensure that the SteamAPI is initialized before calling any Steamworks function.</p>
-
-<pre><code>private bool m_bInitialized;
-public static bool Initialized {
-	get {
-		return Instance.m_bInitialized;
-	}
-}
-
-private void Awake() {
-	m_bInitialized = SteamAPI.Init();
-	if (!m_bInitialized) {
-		Debug.LogError("[Steamworks.NET] SteamAPI_Init() failed. Refer to Valve's documentation or the comment above this line for more information.", this);
-
-		return;
-	}
-}</code></pre>
-
-<h3 id="steamapiwarningmessagehook">SteamAPIWarningMessageHook</h3>
-
-<p>By calling SteamClient.SetWarningMessageHook() with a function delegate we can intercept warning messages from Steam under certain situations.</p>
-
-<p>Note that we ensure that the Steam API is initialized before calling any Steamworks functions.</p>
-
-<p>We call this in OnEnable so that it gets recreated after Unity does an Assembly Reload such as when recompiling scripts.</p>
-
-<p>To recieve warning messages from Steam you must launch your game with “-debug_steamapi” in the launch arguments.</p>
-
-<pre><code>private SteamAPIWarningMessageHook_t m_SteamAPIWarningMessageHook;
-private static void SteamAPIDebugTextHook(int nSeverity, System.Text.StringBuilder pchDebugText) {
-	Debug.LogWarning(pchDebugText);
-}
-
-private void OnEnable() {
-	if (!m_bInitialized) {
-		return;
-	}
-
-	if (m_SteamAPIWarningMessageHook == null) {
-		m_SteamAPIWarningMessageHook = new SteamAPIWarningMessageHook_t(SteamAPIDebugTextHook);
-		SteamClient.SetWarningMessageHook(m_SteamAPIWarningMessageHook);
-	}
-}</code></pre>
-
-<h3 id="steamapiruncallbacks">SteamAPI.RunCallbacks</h3>
-
-<p>For the Callback and CallResult systems to dispatch events <code>SteamAPI.RunCallbacks</code> must be called frequently. The more time between calls, the more potential latency between receiving events or results from the Steam API. </p>
-
-<p>If you pause the game by setting Time.timeScale to 0 then Update() functions will no longer run. You want to look into alternatives to ensure that SteamAPI.RunCallbacks is running even when your game is paused. <a href="http://docs.unity3d.com/Manual/Coroutines.html">Coroutines</a> may be a good option for you.</p>
-
-<p>Note that we ensure that the Steam API is initialized before calling any Steamworks functions.</p>
-
-<pre><code>private void Update() {
-	if (!m_bInitialized) {
-		return;
-	}
-
-	// Run Steam client callbacks
-	SteamAPI.RunCallbacks();
-}</code></pre>
-
-<h3 id="steamapishutdown">SteamAPI.Shutdown</h3>
-
-<p>The final call that SteamManager will make is to <code>SteamAPI.Shutdown</code> which cleans up the SteamAPI and lets steam know that you are preparing to shutdown.</p>
-
-<p>OnDestroy is used as it’s the very last thing that gets called upon shutdown.</p>
-
-<p>Because the SteamManager should be persistent and never disabled or destroyed we can use OnDestroy to shutdown the SteamAPI.</p>
-
-<pre><code>private void OnDestroy() {
-	if (!m_bInitialized) {
-		return;
-	}
-
-	SteamAPI.Shutdown();
-}</code></pre>
+<p>It’s also recommended that you have a look at Valve’s own documentation on <a href="https://partner.steamgames.com/documentation/getting_started">Getting started with the Steamworks API</a>!</p>
 
           </div>
           <footer>

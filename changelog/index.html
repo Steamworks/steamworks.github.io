@@ -186,29 +186,30 @@
   <li>Fixed: Corrected SteamAppList.GetInstalledApps()’s arguments from ‘out AppId_t’ to ‘AppId_t[]’</li>
   <li>Fixed: Added missing SteamMatchmaking.AddFavoriteGame().</li>
   <li>Fixed: Corrected SteamNetworking.GetP2PSessionState()’s second argument from IntPtr to ‘out P2PSessionState_t’.</li>
-  <li>Fixed: A handful of IntPtr -&gt; byte[] arguments in the following functions:</li>
-</ul>
+  <li>
+    <p>Fixed: A handful of IntPtr -&gt; byte[] arguments in the following functions:</p>
 
-<pre><code>	* SteamUnifiedMessages.SendMethod()
-	* SteamUnifiedMessages.GetMethodResponseData()
-	* SteamUnifiedMessages.SendNotification()
-	* SteamGameServer.SendUserConnectAndAuthenticate()
-	* SteamGameServer.GetAuthSessionTicket()
-	* SteamGameServer.BeginAuthSession()
-	* SteamGameServer.HandleIncomingPacket()
-	* SteamGameServer.GetNextOutgoingPacket()
-	* SteamUser.InitiateGameConnection()
+    <pre><code>  * SteamUnifiedMessages.SendMethod()
+  * SteamUnifiedMessages.GetMethodResponseData()
+  * SteamUnifiedMessages.SendNotification()
+  * SteamGameServer.SendUserConnectAndAuthenticate()
+  * SteamGameServer.GetAuthSessionTicket()
+  * SteamGameServer.BeginAuthSession()
+  * SteamGameServer.HandleIncomingPacket()
+  * SteamGameServer.GetNextOutgoingPacket()
+  * SteamUser.InitiateGameConnection()
 </code></pre>
+  </li>
+  <li>
+    <p>Fixed: The following GameServer functions which have default arguments had the wrong codegen resulting in a crash. This is now resolved. (Thanks to Nelson Sexton of Unturned for the report!):</p>
 
-<ul>
-  <li>Fixed: The following GameServer functions which have default arguments had the wrong codegen resulting in a crash. This is now resolved. (Thanks to Nelson Sexton of Unturned for the report!):</li>
-</ul>
-
-<pre><code>	* SteamGameServerUtils.GetEnteredGamepadTextInput()
-	* SteamGameServerNetworking.SendP2PPacket()
-	* SteamGameServerNetworking.IsP2PPacketAvailable()
-	* SteamGameServerNetworking.ReadP2PPacket()
+    <pre><code>  * SteamGameServerUtils.GetEnteredGamepadTextInput()
+  * SteamGameServerNetworking.SendP2PPacket()
+  * SteamGameServerNetworking.IsP2PPacketAvailable()
+  * SteamGameServerNetworking.ReadP2PPacket()
 </code></pre>
+  </li>
+</ul>
 
 <hr />
 
@@ -240,20 +241,22 @@
       <li>Find all usages of “new Callback&lt;&gt;();” in your code.</li>
       <li>Replace each use with “Callback&lt;&gt;.Create()”.</li>
       <li>Additionally you must now store the Callback&lt;&gt; returned by Create() so that it does not get Garbage-Collected.</li>
-      <li>This results in the following:</li>
+      <li>
+        <p>This results in the following:</p>
+
+        <pre><code>  class YourClass : MonoBehavior {
+      protected Callback&lt;UserStatsReceived_t&gt; m_UserStatsReceived;
+      void OnEnable() {
+          m_UserStatsReceived = Callback&lt;UserStatsReceived_t&gt;.Create(OnUserStatsReceived);
+      }
+      private void OnUserStatsReceived(UserStatsReceived_t pCallback) {
+      }
+  }
+</code></pre>
+      </li>
     </ul>
   </li>
 </ul>
-
-<pre><code>		class YourClass : MonoBehavior {
-		    protected Callback&lt;UserStatsReceived_t&gt; m_UserStatsReceived;
-		    void OnEnable() {
-		        m_UserStatsReceived = Callback&lt;UserStatsReceived_t&gt;.Create(OnUserStatsReceived);
-		    }
-		    private void OnUserStatsReceived(UserStatsReceived_t pCallback) {
-		    }
-		}
-</code></pre>
 
 <hr />
 

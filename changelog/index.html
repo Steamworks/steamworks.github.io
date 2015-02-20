@@ -158,37 +158,51 @@
           <div role="main">
             <h1>Changelog</h1>
             <hr>
-            <h1 id="release-500">Release 5.0.0</h1>
+            <h1 id="release-600">Release 6.0.0</h1>
+<ul>
+  <li>Feature: <strong>Updated to Steamworks SDK 1.32</strong></li>
+  <li>Feature: Unity 5 64-bit Editor support</li>
+  <li>Feature: Expose the current active APICall Handle from CallResults</li>
+</ul>
+<ul>
+  <li>Changed: Added [Flags] to EHTMLKeyModifiers</li>
+  <li>Changed: Catch exceptions that happen within Callbacks/CallResults</li>
+  <li>Changed: HTML_ComboNeedsPaint_t &amp; HTML_NeedsPaint_t.pBGRA from string -&gt; IntPtr</li>
+  <li>Changed: Added [In, Out] attribute to all array arguments when P/Invoking (May fix some cases of corrupted marshalling)</li>
+</ul>
+<ul>
+  <li>Fixed: MatchMakingKeyValuePair_t when using more than 1 filter.</li>
+  <li>Fixed: ISteamHTMLSurface missing some of it’s parameters</li>
+  <li>Fixed: Callbacks crashing under Mono</li>
+</ul>
+<hr />
 
+<h1 id="release-500">Release 5.0.0</h1>
 <ul>
   <li>Feature: <strong>Updated to Steamworks SDK 1.31.</strong></li>
   <li>Feature: Increased support for Unity 4.6 beta and 5.0 beta.</li>
   <li>Feature: Added the DllCheck class which can detect runtime steam_api.dll version issues.</li>
-  <li>
-    <p>Feature: Wrapped all function comments in &lt;summary&gt; tags to display them in the visual studio tooltips.</p>
-  </li>
+  <li>Feature: Wrapped all function comments in &lt;summary&gt; tags to display them in the visual studio tooltips.</li>
+</ul>
+<ul>
   <li>Fixed: Corrected two ISteamMusicRemote function arguments from ‘IntPtr’ to ‘AppId_t[]’</li>
   <li>Fixed: Removed the readonly flag from copied files to play nicer with some version control systems. (Thanks @neophit)</li>
 </ul>
-
 <hr />
 
 <h1 id="release-400">Release 4.0.0</h1>
-
 <ul>
-  <li>
-    <p>Feature: <strong>Updated to Steamworks SDK 1.30.</strong></p>
-  </li>
+  <li>Feature: <strong>Updated to Steamworks SDK 1.30.</strong></li>
+</ul>
+<ul>
   <li>Changed: In SteamUGC.GetQueryUGCResult’s arguments changed ‘ref’ to ‘out’.</li>
-  <li>
-    <p>Changed: Redesigned SteamMatchmakingServers to provide a much better usage experience. This includes implementing gameserveritem_t, MatchMakingKeyValuePair_t, and the Steam Matchmaking Response Rules.</p>
-  </li>
+  <li>Changed: Redesigned SteamMatchmakingServers to provide a much better usage experience. This includes implementing gameserveritem_t, MatchMakingKeyValuePair_t, and the Steam Matchmaking Response Rules.</li>
+</ul>
+<ul>
   <li>Fixed: Corrected SteamAppList.GetInstalledApps()’s arguments from ‘out AppId_t’ to ‘AppId_t[]’</li>
   <li>Fixed: Added missing SteamMatchmaking.AddFavoriteGame().</li>
   <li>Fixed: Corrected SteamNetworking.GetP2PSessionState()’s second argument from IntPtr to ‘out P2PSessionState_t’.</li>
-  <li>
-    <p>Fixed: A handful of IntPtr -&gt; byte[] arguments in the following functions:</p>
-
+  <li>Fixed: A handful of IntPtr -&gt; byte[] arguments in the following functions:
     <pre><code>  * SteamUnifiedMessages.SendMethod()
   * SteamUnifiedMessages.GetMethodResponseData()
   * SteamUnifiedMessages.SendNotification()
@@ -197,62 +211,55 @@
   * SteamGameServer.BeginAuthSession()
   * SteamGameServer.HandleIncomingPacket()
   * SteamGameServer.GetNextOutgoingPacket()
-  * SteamUser.InitiateGameConnection()
-</code></pre>
+  * SteamUser.InitiateGameConnection()</code></pre>
   </li>
-  <li>
-    <p>Fixed: The following GameServer functions which have default arguments had the wrong codegen resulting in a crash. This is now resolved. (Thanks to Nelson Sexton of Unturned for the report!):</p>
-
+  <li>Fixed: The following GameServer functions which have default arguments had the wrong codegen resulting in a crash. This is now resolved. (Thanks to Nelson Sexton of Unturned for the report!):
     <pre><code>  * SteamGameServerUtils.GetEnteredGamepadTextInput()
   * SteamGameServerNetworking.SendP2PPacket()
   * SteamGameServerNetworking.IsP2PPacketAvailable()
-  * SteamGameServerNetworking.ReadP2PPacket()
-</code></pre>
+  * SteamGameServerNetworking.ReadP2PPacket()</code></pre>
   </li>
 </ul>
 
 <hr />
 
 <h1 id="release-300">Release 3.0.0</h1>
-
 <ul>
   <li>Feature: <strong>Updated to Steamworks SDK 1.29a.</strong></li>
   <li>Feature: Steamworks.NET now throws an exception if Steamworks is not Initialized when calling interface functions.</li>
   <li>Feature: We now throw an exception when interface functions are called on non-supported platforms. (Like Mobile)</li>
   <li>Feature: 64Bit OSX (Universal) is now supported!</li>
   <li>Feature: Included all of the Steamworks global functions in NativeMethods.</li>
-  <li>
-    <p>Feature: Callbacks and CallResults can now be dispatched to multiple functions.</p>
-  </li>
-  <li>Changed: Completely reworked the Callback/CallResult backends.¹</li>
+  <li>Feature: Callbacks and CallResults can now be dispatched to multiple functions.</li>
+</ul>
+<ul>
+  <li>Changed: Completely reworked the Callback/CallResult backends.<strong>¹</strong></li>
   <li>Changed: CallResult::Set() can now take a delegate function. You are no longer required to set one when you create the CallResult. (Like the C++ API)</li>
   <li>Changed: Removed the Linux Launch Scripts as they are no longer needed!</li>
-  <li>
-    <p>Changed: Statically linked to the Visual Studio runtime so the VS2010 redistributable is no longer required!</p>
-  </li>
+  <li>Changed: Statically linked to the Visual Studio runtime so the VS2010 redistributable is no longer required!</li>
+</ul>
+<ul>
   <li>Fixed: The second last argument in SteamUserStats.GetDownloadedLeaderboardEntry changed from out int to int[].</li>
   <li>Fixed: Resolved a memory corruption issue with UGC tags.</li>
-  <li>
-    <p>Fixed: Some lesser used Callback structs were the wrong size on some platforms resulting in corrupted results.</p>
-  </li>
-  <li><strong>¹ This required an API Change.</strong></li>
+  <li>Fixed: Some lesser used Callback structs were the wrong size on some platforms resulting in corrupted results.</li>
+</ul>
+<ul>
+<li><strong>¹ This required an API Change.</strong></li>
   <li>Upgrade Instructions:
     <ul>
       <li>Find all usages of “new Callback&lt;&gt;();” in your code.</li>
       <li>Replace each use with “Callback&lt;&gt;.Create()”.</li>
       <li>Additionally you must now store the Callback&lt;&gt; returned by Create() so that it does not get Garbage-Collected.</li>
       <li>
-        <p>This results in the following:</p>
-
-        <pre><code>  class YourClass : MonoBehavior {
-      protected Callback&lt;UserStatsReceived_t&gt; m_UserStatsReceived;
-      void OnEnable() {
-          m_UserStatsReceived = Callback&lt;UserStatsReceived_t&gt;.Create(OnUserStatsReceived);
-      }
-      private void OnUserStatsReceived(UserStatsReceived_t pCallback) {
-      }
+        This results in the following:
+        <pre><code>class YourClass : MonoBehavior {
+  protected Callback&lt;UserStatsReceived_t&gt; m_UserStatsReceived;
+  void OnEnable() {
+    m_UserStatsReceived = Callback&lt;UserStatsReceived_t&gt;.Create(OnUserStatsReceived);
   }
-</code></pre>
+  private void OnUserStatsReceived(UserStatsReceived_t pCallback) {
+  }
+}</code></pre>
       </li>
     </ul>
   </li>
@@ -261,20 +268,16 @@
 <hr />
 
 <h1 id="release-210">Release 2.1.0</h1>
-
 <ul>
   <li>Improved the Steam types so that they are all Comparable and Castable</li>
   <li>Made SetWarningMessageHook easier to use</li>
   <li>Fixed Regression caused by marshalling structs as return values on Unity’s Linux Mono</li>
   <li>64 Bit support on both Linux and Windows (Steam does not provide a 64bit OSX dylib!)</li>
 </ul>
-
 <hr />
 
 <h1 id="release-200">Release 2.0.0</h1>
-
 <p>Steamworks.NET 2.0.0 provides some rather large changes most notable being:</p>
-
 <ul>
   <li>Reorganized folder structure (If you were using gitmodules to pull Steamworks.NET into your Plugins/ folder then that will no longer work.) (This is due to the Editor scripts and Standalone project being included)</li>
   <li>All comments/documentation from the C++ headers are now replicated in C#.</li>
@@ -285,27 +288,21 @@
   <li>Updated Steamworks to 1.28</li>
   <li>Redesigned the CallResult API to end up even closer to the C++ API</li>
 </ul>
-
 <hr />
 
 <h1 id="release-110">Release 1.1.0</h1>
-
 <ul>
   <li>?</li>
 </ul>
-
 <hr />
 
 <h1 id="release-101">Release 1.0.1</h1>
-
 <ul>
   <li>?</li>
 </ul>
-
 <hr />
 
 <h1 id="release-100">Release 1.0.0</h1>
-
 <ul>
   <li>Initial Release</li>
 </ul>

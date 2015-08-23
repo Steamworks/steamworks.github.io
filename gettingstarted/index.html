@@ -203,21 +203,21 @@ using Steamworks;</code></pre>
 
 <h3 id="steam-callbacks">Steam Callbacks</h3>
 
-<p>Callbacks are an important feature of Steamworks, they allow you to retrieve data asynchronously from Steam without locking up your game.</p>
+<p>Callbacks are the most important aspect of Steamworks, they allow you to retrieve data asynchronously from Steam without locking up your game.</p>
 
-<p>One such Callback that you will likely wish to utilize is called <code>GameOverlayActivated_t</code>. As the name implies it sends you a callback every time the Steam Overlay is activated or deactivated.</p>
+<p>One such Callback that you will likely wish to utilize is <code>GameOverlayActivated_t</code>. As the name implies it sends you a callback every time the Steam Overlay is activated or deactivated.</p>
 
 <p>To use it we will continue with our script from earlier.</p>
 
-<p>To use Callbacks in Steamworks.NET you first declare a <code>protected Callback&lt;&gt;</code> at class scope as a member variable to hold onto the Callback.</p>
+<p>To use Callbacks in Steamworks.NET you must first declare a <code>protected Callback&lt;&gt;</code> at class scope as a member variable to hold onto the Callback.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	protected Callback&lt;GameOverlayActivated_t&gt; m_GameOverlayActivated;
 }</code></pre>
 
-<p>We then create our Callback by calling <code>Callback&lt;&gt;.Create()</code> and assigning it to m_GameOverLayActivated.</p>
+<p>We then create our Callback by calling <code>Callback&lt;&gt;.Create()</code> and assigning it to m_GameOverLayActivated. This prevents the callback from being garbage collected.</p>
 
-<p>We do this in OnEnable as that allows us to recreate the Callback after Unity reloads assemblies.</p>
+<p>We usually do this in OnEnable as that allows us to recreate the Callback after Unity reloads assemblies.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	protected Callback&lt;GameOverlayActivated_t&gt; m_GameOverlayActivated;
@@ -252,7 +252,7 @@ using Steamworks;</code></pre>
 
 <p>And that’s it!</p>
 
-<p>One popular use case for the GameOverlayActivated Callback is to pause the game when the overlay opens.</p>
+<p>One popular and recommended use case for the GameOverlayActivated Callback is to pause the game when the overlay opens.</p>
 
 <h3 id="steam-callresults">Steam CallResults</h3>
 

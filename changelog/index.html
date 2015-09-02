@@ -158,7 +158,26 @@
           <div role="main">
             <h1>Changelog</h1>
             <hr>
-            <h1 id="release-600">Release 6.0.0</h1>
+            <h1 id="release-700">Release 7.0.0</h1>
+<ul>
+  <li>Feature: <strong>Updated to Steamworks SDK 1.34</strong></li>
+  <li>Feature: Improved Unity 5.1 support</li>
+  <li>Feature: Added missing SteamContext accessors</li>
+  <li>Feature: Made the automatic code generator open source! <a href="https://github.com/rlabrecque/Steamworks.NET-CodeGen">Available here</a></li>
+</ul>
+<ul>
+  <li>Changed: Temporarily disabled DllCheck.Test</li>
+  <li>Changed: Steamworks.NET no longer protects you from Initializing once only. That has been moved into SteamManager.cs</li>
+  <li>Changed: Lots of little cleanup</li>
+</ul>
+<ul>
+  <li>Fixed: Callbacks no longer crash on Microsoft CLR (Non-Unity)</li>
+  <li>Fixed: Removed uses of ICustomMarshaler as it causes Unitys Mono to crash in rare circumstances</li>
+  <li>Fixed: Steamworks.NET no longer causes errors when building for unsupported platforms</li>
+</ul>
+<hr />
+
+<h1 id="release-600">Release 6.0.0</h1>
 <ul>
   <li>Feature: <strong>Updated to Steamworks SDK 1.32</strong></li>
   <li>Feature: Unity 5 64-bit Editor support</li>

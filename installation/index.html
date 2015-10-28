@@ -158,7 +158,7 @@
           <div role="main">
             <h1>Installation</h1>
             <hr>
-            <p>The Simple instructions to get you up and running with Steamworks.NET!</p>
+            <p>The simple instructions to get you up and running with Steamworks.NET!</p>
 
 <p><strong>To use <em>Steamworks.NET</em> you must already be a Steamworks developer.</strong></p>
 
@@ -174,6 +174,10 @@
 </ul>
 
 <p>Head over to <a href="/gettingstarted/">Getting Started</a> to start using Steamworks.NET</p>
+
+<p><em>Steamworks.NET</em> is a free project but if it helps you make money please consider donating so that I can continue to support it in the years to come!</p>
+
+<p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=YFZZER8VNXKRC"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Support via Paypal" /></a></p>
 
 <hr />
 
@@ -196,8 +200,12 @@
   </li>
   <li>When you build your application the following files must be copied into the output dir:
     <ul>
-      <li><strong>steam_appid.txt</strong> - Required for testing your application outside of steam. <em>Do not ship this to customers!</em></li>
-      <li><strong>Steamworks.NET.dll</strong> - Make sure it’s the correct version for the platform that you plan on shipping for! - When building for OSX or Linux the wrong Steamworks.NET.dll will be copied over by default, it is recommended that you create a post build script to copy the correct version.</li>
+      <li>All Platforms:
+        <ul>
+          <li><strong>steam_appid.txt</strong> - Required for testing your application outside of steam. <em>Do not ship this to customers!</em></li>
+          <li><strong>Steamworks.NET.dll</strong> - Make sure it’s the correct version for the platform that you plan on shipping for! - When building for OSX or Linux the wrong Steamworks.NET.dll will be copied over by default, it is recommended that you create a post build script to copy the correct version.</li>
+        </ul>
+      </li>
       <li>Windows:
         <ul>
           <li><strong>CSteamworks.dll</strong></li>

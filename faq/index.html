@@ -202,18 +202,10 @@
 
 <p>This is most likely caused by not calling <code>SteamAPI.RunCallbacks()</code> in your game or not calling <code>SteamUserStats.StoreStats()</code> after you set an achievement.</p>
 
-<h3 id="does-steamworksnet-work-with-unity-35-or-earlier">Does Steamworks.NET work with Unity 3.5 or earlier?</h3>
+<h3 id="what-versions-of-unity-are-supported">What versions of Unity are supported?</h3>
 
-<p>Not out of the box no. Unity 3.5 lacks some key features and supporting it was holding the rest of the project back.</p>
-
-<p>If you wish to use Steamworks.NET with Unity 3.5 the following changes must be made:</p>
-
-<ul>
-  <li>Remove BuildTarget.StandaloneOSXIntel64 and BuildTarget.StandaloneOSXUniversal from RedistCopy.cs</li>
-  <li>Copy CSteamworks.dll from Assets/Plugins/x86 out to Assets/Plugins as Unity 3.5 did not support the x86 and x86_64 special folders and won’t be able to find or copy the file over. (Feel free to delete the x86_64 folder, and the x86 folder after the fact. The .so files are for Linux only which Unity 3.5 did not support)</li>
-  <li>Unity 3.5 did not support the UNITY_EDITOR_WIN platform define. This can cause a number of issues. The first is that steam_api.dll does not get copied over from Assets/Plugins/Steamworks.NET/redist to the Project root automatically, you must do this manually.</li>
-  <li>The second issue that you must worry about is your build target while playing in the editor MUST be set to the editors platform. You will likely get a crash otherwise.</li>
-</ul>
+<p>Steamworks.NET currently targets Unity 4.6, 5.0+.
+Unity Pro is required when using 4.6.</p>
 
           </div>
           <footer>

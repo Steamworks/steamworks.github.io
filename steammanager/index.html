@@ -80,8 +80,6 @@
     
         
         
-            
-        
 
     <li class="toctree-l1 current">
         <a class="current" href="/steammanager/">SteamManager</a>
@@ -216,9 +214,9 @@ private void OnDestroy() {
 
 <p>Steamworks.NET provides a couple non-essential sanity checks to ensure that Steamworks.NET is being used correctly.</p>
 
-<p><code>Packsize.Test()</code> ensures that Steamworks.NET is running under the correct platform, In Unity under normal operation this should never return false.</p>
+<p><code class="highlighter-rouge">Packsize.Test()</code> ensures that Steamworks.NET is running under the correct platform, In Unity under normal operation this should never return false.</p>
 
-<p><code>DllCheck.Test()</code> checks to make sure the Steamworks redistributable binaries are the correct version. This is particularily useful when you upgrade Steamworks.NET, Especially if you are not using the Steamworks.NET editor scripts. Running Steamworks.NET with the wrong steam_api.dll will likely result in issues. (Currently only checks steam_api[64].dll)</p>
+<p><code class="highlighter-rouge">DllCheck.Test()</code> checks to make sure the Steamworks redistributable binaries are the correct version. This is particularily useful when you upgrade Steamworks.NET, Especially if you are not using the Steamworks.NET editor scripts. Running Steamworks.NET with the wrong steam_api.dll will likely result in issues. (Currently only checks steam_api[64].dll)</p>
 
 <pre><code>if (!Packsize.Test()) {
 	Debug.LogError("[Steamworks.NET] Packsize Test returned false, the wrong version of Steamworks.NET is being run in this platform.", this);
@@ -230,11 +228,11 @@ if (!DllCheck.Test()) {
 
 <h3 id="steamapirestartappifnecessary">SteamAPI.RestartAppIfNecessary</h3>
 
-<p>The first Steamworks function call which the script makes is <code>SteamAPI.RestartAppIfNecessary((AppId)480)</code>. Replace 480 with your own AppId.</p>
+<p>The first Steamworks function call which the script makes is <code class="highlighter-rouge">SteamAPI.RestartAppIfNecessary((AppId)480)</code>. Replace 480 with your own AppId.</p>
 
 <p>SteamAPI.RestartAppIfNecessary() checks if the Steam client is running, and will start it if it’s not.</p>
 
-<p>If it returns true it starts the Steam client if required and launches your game again through it, you should then manually close your application as quickly as possible. This effectively runs <code>steam://run/[AppId]</code> so it may not relaunch the exact executable that called it.</p>
+<p>If it returns true it starts the Steam client if required and launches your game again through it, you should then manually close your application as quickly as possible. This effectively runs <code class="highlighter-rouge">steam://run/[AppId]</code> so it may not relaunch the exact executable that called it.</p>
 
 <p>If it returns false, your game was launched by the Steam client and execution continues as normal.</p>
 
@@ -259,7 +257,7 @@ if (!DllCheck.Test()) {
 
 <h3 id="steamapiinit">SteamAPI.Init</h3>
 
-<p>The second Steamworks function which should be called is to <code>SteamAPI.Init()</code>, This start’s the SteamAPI and must be called before any other Steamworks functions are called.</p>
+<p>The second Steamworks function which should be called is to <code class="highlighter-rouge">SteamAPI.Init()</code>, This start’s the SteamAPI and must be called before any other Steamworks functions are called.</p>
 
 <p>If SteamAPI.Init() returns true then everything has been set up to proceede using Steamworks.NET</p>
 
@@ -319,7 +317,7 @@ private void OnEnable() {
 
 <h3 id="steamapiruncallbacks">SteamAPI.RunCallbacks</h3>
 
-<p>For the Callback and CallResult systems to dispatch events <code>SteamAPI.RunCallbacks</code> must be called frequently. The more time between calls, the more potential latency between receiving events or results from the Steam API. </p>
+<p>For the Callback and CallResult systems to dispatch events <code class="highlighter-rouge">SteamAPI.RunCallbacks</code> must be called frequently. The more time between calls, the more potential latency between receiving events or results from the Steam API.</p>
 
 <p>If you pause the game by setting Time.timeScale to 0 then Update() functions will no longer run. You want to look into alternatives to ensure that SteamAPI.RunCallbacks is running even when your game is paused. <a href="http://docs.unity3d.com/Manual/Coroutines.html">Coroutines</a> may be a good option for you.</p>
 
@@ -336,7 +334,7 @@ private void OnEnable() {
 
 <h3 id="steamapishutdown">SteamAPI.Shutdown</h3>
 
-<p>The final call that SteamManager will make is to <code>SteamAPI.Shutdown</code> which cleans up the SteamAPI and lets steam know that you are preparing to shutdown.</p>
+<p>The final call that SteamManager will make is to <code class="highlighter-rouge">SteamAPI.Shutdown</code> which cleans up the SteamAPI and lets steam know that you are preparing to shutdown.</p>
 
 <p>OnDestroy is used as it’s the very last thing that gets called upon shutdown.</p>
 

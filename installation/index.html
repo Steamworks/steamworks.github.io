@@ -165,15 +165,16 @@
 <ul>
   <li>Download the .unitypackage <a href="https://github.com/rlabrecque/Steamworks.NET/releases/download/7.0.0/Steamworks.NET_7.0.0.unitypackage">Stable (7.0.0)</a> or Clone from <a href="https://github.com/rlabrecque/Steamworks.NET">Github</a></li>
   <li>Import everything into your <code class="highlighter-rouge">Assets/</code> folder.</li>
-  <li>Launch your Unity project. The included editor scripts will copy steam_appid.txt (and steam_api.dll if your on windows) into the root of your project.</li>
-  <li>Open <code class="highlighter-rouge">steam_appid.txt</code> which now resides in the root of your Unity project and replace <code class="highlighter-rouge">480</code> with your own AppId.</li>
-  <li>Close Unity and relaunch the project so that it loads the freshly copied steam_appid.txt &amp; steam_api.dll.</li>
+  <li>Launch your Unity project. The included editor scripts will copy steam_appid.txt into the root of your project.</li>
+  <li>Open the <code class="highlighter-rouge">steam_appid.txt</code> which now resides in the root of your Unity project and replace <code class="highlighter-rouge">480</code> with your own AppId.</li>
+  <li>Close Unity and relaunch the project so that it loads the freshly updated steam_appid.txt.</li>
   <li>You are ready to start coding with Steamworks.NET!</li>
 </ul>
 
 <p>Head over to <a href="/gettingstarted/">Getting Started</a> to start using Steamworks.NET</p>
 
-<p><em>Steamworks.NET</em> is a free project but if it helps you make money please consider donating so that I can continue to support it in the years to come!</p>
+<p><em>Steamworks.NET</em> is a free project but if it helps you make money please consider donating so that I can continue to support it in the years to come!
+Also never ever required but greatly appreciated is a mention in your credits.</p>
 
 <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=YFZZER8VNXKRC"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Support via Paypal" /></a></p>
 
@@ -193,7 +194,7 @@
   </li>
   <li>B: Copy <code class="highlighter-rouge">Plugins/Steamworks.NET</code> into your C# project. In Visual Studio open your project properties, change to the Build tab and define <code class="highlighter-rouge">STEAMWORKS_WIN</code> or <code class="highlighter-rouge">STEAMWORKS_LIN_OSX</code> globally via <code class="highlighter-rouge">Conditional compilation symbols</code>.
     <ul>
-      <li>This is only recommended if your binary is not portable across platforms already. If you ship on multiple platforms you must have multiple build targets for each platforms. Please prefer the second route.</li>
+      <li>This is only recommended if your binary is not portable across platforms already. If you ship on multiple platforms you must have multiple build targets for each platforms. Please prefer the first route.</li>
     </ul>
   </li>
   <li>When you build your application the following files must be copied into the output dir:

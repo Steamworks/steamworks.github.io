@@ -160,15 +160,21 @@
 
 <p>Yes absolutely!</p>
 
-<p>The only downside is the Steam Overlay does not function well or often even at all within the editor due to the number of unique windows, so keep that in mind when testing out aspects of Steamworks that require the Overlay to be available such as the Steam Controller or Microtransactions.</p>
+<p>The only downside is the Steam Overlay does not function well or even often at all within the editor due to the number of unique windows, so keep that in mind when testing out aspects of Steamworks that require the Overlay to be available such as the Steam Controller or Microtransactions.</p>
+
+<h3 id="how-do-i-upload-my-game-to-steam">How do I upload my game to Steam?</h3>
+
+<p>You still need the official Steamworks SDK to get the ContentBuilder tool to upload your game.</p>
 
 <h3 id="steam-says-im-in-game-constantly-after-playing-in-the-editor">Steam says I’m in game constantly after playing in the editor</h3>
 
 <p>Steam will only recognize a game as having shutdown when the last dependent process has quit. This is normal and does not affect the usage of Steamworks.NET.</p>
 
+<p>See this <a href="https://github.com/rlabrecque/Steamworks.NET/issues/13">Github issue</a> for common causes and fixes.</p>
+
 <h3 id="the-steam-overlay-doesnt-work-or-causes-rendering-errors">The Steam Overlay doesn’t work or causes rendering errors!</h3>
 
-<p>There are many cases where the overlay collides with Unity, unfortunately it happens regardless of using Steamworks.NET and we are unable to resolve Steam Overlay issues as it is out of our control.</p>
+<p>There are many cases where the overlay does not play nice with Unity, unfortunately this happens regardless of using Steamworks.NET and we are unable to resolve Steam Overlay issues as it is out of our control.</p>
 
 <p>Some such causes that are known to cause the overlay to break are:</p>
 
@@ -178,13 +184,15 @@
   <li>There are incompatabilities between Unity and the Steam Overlay when running under DirectX11</li>
 </ul>
 
-<p>¹ For the Steam Overlay to work it must be injected before the renderer (DirectX/OpenGL) gets initialized. This is not feasible from Unity as Scripts only start running after the renderer is set up and injection is done in <code>SteamAPI.Init()</code>. It works when launched through Steam as Steam will always inject the overlay as the process starts.</p>
+<p>¹ For the Steam Overlay to work it must be injected before the renderer (DirectX/OpenGL) gets initialized. This is not feasible from Unity as Scripts only start running after the renderer is set up and injection is done in <code class="highlighter-rouge">SteamAPI.Init()</code>. It works when launched through Steam as Steam will always inject the overlay right as the process starts.</p>
+
+<p>If you are running into overlay issues please check out <a href="http://steamcommunity.com/groups/steamworks/discussions/0/540744936523837631/">this</a> Steamworks Discussions post.</p>
 
 <h3 id="what-languages-does-steamworksnet-support">What languages does Steamworks.NET support?</h3>
 
-<p>In theory it should work with any .NET based language! Documentation is only provided for C#, but many people have used it from UnityScript as well. Let me know if you’re using it from Boo!</p>
+<p>In theory it should work with any .NET based language! Documentation is only provided for C#, but many people have used it from UnityScript as well. Let me know if you’re using it from Boo or F#!</p>
 
-<h3 id="my-unity-standalone-build-doesnt-launch">My Unity Standalone build doesn’t launch!</h3>
+<h3 id="my-unity-build-doesnt-launch">My Unity build doesn’t launch!</h3>
 
 <p>You are likely missing the steam_appid.txt from your output folder. Steamworks.NET does not copy it over automatically because it is not something that you should be shipping to customers.</p>
 
@@ -198,11 +206,11 @@
 
 <h3 id="the-achievement-popup-only-occurs-after-i-quit-my-game">The achievement popup only occurs after I quit my game.</h3>
 
-<p>This is most likely caused by not calling <code class="highlighter-rouge">SteamAPI.RunCallbacks()</code> in your game or not calling <code class="highlighter-rouge">SteamUserStats.StoreStats()</code> after you set an achievement.</p>
+<p>This is most likely either caused by not calling <code class="highlighter-rouge">SteamAPI.RunCallbacks()</code> at regular intervals in your game or not calling <code class="highlighter-rouge">SteamUserStats.StoreStats()</code> after you set an achievement.</p>
 
 <h3 id="what-versions-of-unity-are-supported">What versions of Unity are supported?</h3>
 
-<p>Steamworks.NET currently targets Unity 4.6, 5.0+. Unity Pro is required when using 4.6.</p>
+<p>Steamworks.NET currently targets Unity 4.7 and 5.0+. Unity Pro is required when using 4.7.</p>
 
           </div>
           <footer>

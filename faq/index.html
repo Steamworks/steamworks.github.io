@@ -206,7 +206,7 @@
 
 <p>This is most likely either caused by not calling <code class="highlighter-rouge">SteamAPI.RunCallbacks()</code> at regular intervals in your game or not calling <code class="highlighter-rouge">SteamUserStats.StoreStats()</code> after you set an achievement.</p>
 
-<h3 id="cam-i-disable-compilation-of-steamworksnet-on-specific-platforms">Cam I disable compilation of Steamworks.NET on specific platforms?</h3>
+<h3 id="can-i-disable-compilation-of-steamworksnet-on-specific-platforms">Can I disable compilation of Steamworks.NET on specific platforms?</h3>
 
 <p>Yes! Just define <code class="highlighter-rouge">DISABLESTEAMWORKS</code>. This can be done with Unity in the Player Settings. For more information see <a href="https://docs.unity3d.com/Manual/PlatformDependentCompilation.html">Unity’s Documentation</a>
 Note that you will have to wrap all your code that calls Steamworks functions in <code class="highlighter-rouge">#if</code> statements as well.</p>

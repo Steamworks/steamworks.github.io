@@ -163,11 +163,11 @@
 <h2 id="unity-instructions">Unity Instructions</h2>
 
 <ul>
-  <li>Download the <a href="https://github.com/rlabrecque/Steamworks.NET/releases/download/9.0.0/Steamworks.NET_9.0.0.unitypackage">.unitypackage</a> or clone/download the latest version from <a href="https://github.com/rlabrecque/Steamworks.NET">Github</a> <a href="https://github.com/rlabrecque/Steamworks.NET/archive/master.zip">zip download</a>.</li>
-  <li>Import everything into your <code class="highlighter-rouge">Assets/</code> folder.</li>
+  <li>Download the .unitypackage from the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a> or clone/download the latest version from <a href="https://github.com/rlabrecque/Steamworks.NET">Github</a> - (<a href="https://github.com/rlabrecque/Steamworks.NET/archive/master.zip">zip download</a>).</li>
+  <li>Import everything into your <code class="highlighter-rouge">Assets/</code> folder. (If you’re using a non release/github/zip version then the <code class="highlighter-rouge">Standalone/</code> folder does not need to be imported.)</li>
   <li>Launch your Unity project. The included editor scripts will copy steam_appid.txt into the root of your project.</li>
   <li>Open the <code class="highlighter-rouge">steam_appid.txt</code> which now resides in the root of your Unity project and replace <code class="highlighter-rouge">480</code> with your own AppId.</li>
-  <li>If you are using the github version you will want to grab the <a href="https://github.com/rlabrecque/SteamManager/blob/master/SteamManager.cs">SteamManager</a> MonoBehaviour. It is included in the unitypackage.</li>
+  <li>Note: If you are using the github version you will want to grab the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> MonoBehaviour. It is included in the unitypackage.</li>
   <li>Close Unity and relaunch the project so that it loads the freshly updated steam_appid.txt.</li>
   <li>Head over to <a href="/gettingstarted/">Getting Started</a> to start using Steamworks.NET!</li>
 </ul>
@@ -241,7 +241,7 @@ Also never ever required but greatly appreciated is a mention in your credits. (
 
 <p>If you are using the unitypackage simply open the unitypackage within your Unity project and import everything, overwriting the existing files.</p>
 
-<p>If you are upgrading to a source drop from github then clone or download the latest zip and copy the <code class="highlighter-rouge">Editor/</code> and <code class="highlighter-rouge">Plugins/</code> folders into your <code class="highlighter-rouge">Assets/</code> folder using Windows Explorer or Finder ensuring that you overwriting everything. If you try to drop these folders into the Unity Project view then the files are often duplicated. Then grab the latest SteamManager script and overwrite your old one, merging any changes you may have made to it.</p>
+<p>If you are upgrading to a source drop from github then clone or download the latest zip and copy the <code class="highlighter-rouge">Editor/</code> and <code class="highlighter-rouge">Plugins/</code> folders into your <code class="highlighter-rouge">Assets/</code> folder using Windows Explorer or Finder ensuring that you overwriting everything. If you try to drop these folders into the Unity Project view then the files are often duplicated. Then grab the latest SteamManager](https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs) script and overwrite your old one, merging any changes you may have made to it.</p>
 
 <hr />
 

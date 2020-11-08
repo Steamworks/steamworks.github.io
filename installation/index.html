@@ -155,11 +155,19 @@
 <h2 id="unity-instructions">Unity Instructions</h2>
 
 <ul>
-  <li>Download the .unitypackage from the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a> or clone/download the latest version from <a href="https://github.com/rlabrecque/Steamworks.NET">Github</a> - (<a href="https://github.com/rlabrecque/Steamworks.NET/archive/master.zip">zip download</a>).</li>
-  <li>Import everything into your <code class="highlighter-rouge">Assets/</code> folder. (If you’re using a non release/github/zip version then the <code class="highlighter-rouge">Standalone/</code> folder does not need to be imported.)</li>
+  <li>Option A: Download the .unitypackage from the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a>.
+    <ul>
+      <li>Import everything into your project’s <code class="highlighter-rouge">Assets/</code> folder.</li>
+    </ul>
+  </li>
+  <li>Option B: Download the latest version from the <a href="https://github.com/rlabrecque/Steamworks.NET">Github</a> master branch (<a href="https://github.com/rlabrecque/Steamworks.NET/archive/master.zip">direct link</a>).
+    <ul>
+      <li>Copy everything into your project’s <code class="highlighter-rouge">Assets/</code> folder. The <code class="highlighter-rouge">Standalone/</code> folder does not need to be imported.</li>
+      <li>You may wish to grab the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> MonoBehaviour. It is included in the unitypackage.</li>
+    </ul>
+  </li>
   <li>Launch your Unity project. The included editor scripts will copy steam_appid.txt into the root of your project.</li>
   <li>Open the <code class="highlighter-rouge">steam_appid.txt</code> which now resides in the root of your Unity project and replace <code class="highlighter-rouge">480</code> with your own AppId.</li>
-  <li>Note: If you are using the github version you will want to grab the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> MonoBehaviour. It is included in the unitypackage.</li>
   <li>Close Unity and relaunch the project so that it loads the freshly updated steam_appid.txt.</li>
   <li>Head over to <a href="/gettingstarted/">Getting Started</a> to start using Steamworks.NET!</li>
 </ul>
@@ -177,14 +185,14 @@
 <p>If you are not using Unity then you have two available paths that you can take.</p>
 
 <ul>
-  <li>A: The recommended route is to build the standalone assemblies with the project file located in <code class="highlighter-rouge">Standalone/</code> or download the prebuilt binaries which are available on the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a> page.
+  <li>Option A: The recommended route is to build the standalone assemblies with the project file located in <code class="highlighter-rouge">Standalone/</code> or download the prebuilt binaries which are available on the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a> page.
     <ul>
       <li>Open the Visual Studio solution (.sln) file, build both targets one for Windows and one for OSX &amp; Linux. (Optional if you downloaded a prebuilt version)</li>
       <li>Reference the built assembly (Steamworks.NET.dll) in your project.</li>
       <li>Start coding! Call SteamAPI.Init() before initializing your renderer.</li>
     </ul>
   </li>
-  <li>B: Otherwise, copy <code class="highlighter-rouge">Plugins/Steamworks.NET</code> directly into your C# project. In Visual Studio open your project properties, change to the Build tab and define <code class="highlighter-rouge">STEAMWORKS_WIN</code> or <code class="highlighter-rouge">STEAMWORKS_LIN_OSX</code> globally via <code class="highlighter-rouge">Conditional compilation symbols</code>.
+  <li>Option B: Otherwise, copy <code class="highlighter-rouge">Plugins/Steamworks.NET</code> directly into your C# project. In Visual Studio open your project properties, change to the Build tab and define <code class="highlighter-rouge">STEAMWORKS_WIN</code> or <code class="highlighter-rouge">STEAMWORKS_LIN_OSX</code> globally via <code class="highlighter-rouge">Conditional compilation symbols</code>.
     <ul>
       <li>This is only recommended if your binary is not portable across platforms already. If you ship on multiple platforms you must have multiple build targets for each platforms. Please prefer the first route.</li>
     </ul>
@@ -193,25 +201,17 @@
     <ul>
       <li>All Platforms:
         <ul>
-          <li><strong>steam_appid.txt</strong> - Required for testing your application outside of steam. <em>Do not ship this to customers!</em></li>
+          <li><strong>steam_appid.txt</strong> - Required for testing your application outside of steam. <strong>Do not ship this to customers!</strong></li>
           <li><strong>Steamworks.NET.dll</strong> - Make sure it’s the correct version for the platform that you plan on shipping for! - When building for OSX or Linux the wrong Steamworks.NET.dll will be copied over by default, it is recommended that you create a post build script to copy the correct version.</li>
         </ul>
       </li>
       <li>Windows:
         <ul>
-          <li><strong>CSteamworks.dll</strong></li>
           <li><strong>steam_api.dll</strong></li>
-        </ul>
-      </li>
-      <li>OSX:
-        <ul>
-          <li><strong>CSteamworks.bundle</strong></li>
-          <li><strong>Steamworks.NET.dll.config</strong> - This lets Mono know where to find CSteamworks.</li>
         </ul>
       </li>
       <li>Linux:
         <ul>
-          <li><strong>libCSteamworks.so</strong></li>
           <li><strong>libsteam_api.so</strong></li>
         </ul>
       </li>
@@ -240,7 +240,7 @@ Also never ever required but greatly appreciated is a mention in your credits. (
 
 <h2 id="uninstallation">Uninstallation</h2>
 
-<p><em>Steamworks.NET</em> does not come with an easy one click uninstaller, but it stores no additional data and can be cleanly removed simply by removing the files that were initially imported. This can be quickly done simply by deleting the <code class="highlighter-rouge">Editor/Steamworks.NET</code>, <code class="highlighter-rouge">Plugins/Steamworks.NET</code>, and <code class="highlighter-rouge">Plugins/CSteamworks.bundle</code> folders along with the <code class="highlighter-rouge">CSteamworks</code> and <code class="highlighter-rouge">steam_api</code> binaries in <code class="highlighter-rouge">Plugins/x86[_64]</code>, the SteamManager.cs script and then the <code class="highlighter-rouge">steam_appid.txt</code> in the root of your project.</p>
+<p><em>Steamworks.NET</em> does not come with an easy one click uninstaller, but it stores no additional data and can be cleanly removed simply by removing the files that were initially imported. This can be quickly done simply by deleting the <code class="highlighter-rouge">Editor/Steamworks.NET</code>, <code class="highlighter-rouge">Plugins/Steamworks.NET</code>, <code class="highlighter-rouge">steam_api</code> binaries in <code class="highlighter-rouge">Plugins/x86[_64]</code>, the SteamManager.cs script, and then the <code class="highlighter-rouge">steam_appid.txt</code> in the root of your project.</p>
 
 <hr />
 
@@ -251,7 +251,7 @@ Also never ever required but greatly appreciated is a mention in your credits. (
 <ul>
   <li>Windows: Next to steam_api.dll</li>
   <li>OSX: In <code class="highlighter-rouge">/Contents/Frameworks/MonoEmbedRuntime/osx/</code></li>
-  <li>Linux: Next to CSteamworks.so</li>
+  <li>Linux: Next to libsteam_api.so</li>
 </ul>
 
 <p><code class="highlighter-rouge">sdkencryptedappticket.dll</code> can be found in the Steamworks SDK.</p>

@@ -166,11 +166,11 @@
 
 <h3 id="the-steam-overlay-doesnt-work">The Steam Overlay doesn’t work!</h3>
 
-<p>For the Steam Overlay to work it must be injected before the renderer (DirectX/OpenGL) gets initialized. This is not feasible from Unity as Scripts only start running after the renderer is set up and injection is done through the <code class="highlighter-rouge">SteamAPI.Init()</code> API call.</p>
+<p>For the Steam Overlay to work it must be injected before the renderer (DirectX/OpenGL) gets initialized. This is not feasible from Unity as Scripts only start running after the renderer is set up and injection is done through the <code class="language-plaintext highlighter-rouge">SteamAPI.Init()</code> API call.</p>
 
 <p>It should work fine when launched through Steam as Steam will always inject the overlay into all processes as it starts.</p>
 
-<p>It is highly recommended that you set your AppId in <code class="highlighter-rouge">SteamAPI.RestartAppIfNecessary()</code> which can be found in SteamManager. It will relaunch your application if it is launched from the exe directly, giving you the overlay all the time.</p>
+<p>It is highly recommended that you set your AppId in <code class="language-plaintext highlighter-rouge">SteamAPI.RestartAppIfNecessary()</code> which can be found in SteamManager. It will relaunch your application if it is launched from the exe directly, giving you the overlay all the time.</p>
 
 <h3 id="the-steam-overlay-causes-rendering-errors">The Steam Overlay causes rendering errors!</h3>
 
@@ -196,12 +196,12 @@
 
 <h3 id="the-achievement-popup-only-occurs-after-i-quit-my-game">The achievement popup only occurs after I quit my game.</h3>
 
-<p>This is most likely either caused by not calling <code class="highlighter-rouge">SteamAPI.RunCallbacks()</code> at regular intervals in your game or not calling <code class="highlighter-rouge">SteamUserStats.StoreStats()</code> after you set an achievement.</p>
+<p>This is most likely either caused by not calling <code class="language-plaintext highlighter-rouge">SteamAPI.RunCallbacks()</code> at regular intervals in your game or not calling <code class="language-plaintext highlighter-rouge">SteamUserStats.StoreStats()</code> after you set an achievement.</p>
 
 <h3 id="can-i-disable-compilation-of-steamworksnet-on-specific-platforms">Can I disable compilation of Steamworks.NET on specific platforms?</h3>
 
-<p>Yes! Just define <code class="highlighter-rouge">DISABLESTEAMWORKS</code>. This can be done with Unity in the Player Settings. For more information see <a href="https://docs.unity3d.com/Manual/PlatformDependentCompilation.html">Unity’s Documentation</a>
-Note that you will have to wrap all your code that calls Steamworks functions in <code class="highlighter-rouge">#if</code> statements as well.</p>
+<p>Yes! Just define <code class="language-plaintext highlighter-rouge">DISABLESTEAMWORKS</code>. This can be done with Unity in the Player Settings. For more information see <a href="https://docs.unity3d.com/Manual/PlatformDependentCompilation.html">Unity’s Documentation</a>
+Note that you will have to wrap all your code that calls Steamworks functions in <code class="language-plaintext highlighter-rouge">#if</code> statements as well.</p>
 
 <h3 id="what-versions-of-unity-are-supported">What versions of Unity are supported?</h3>
 

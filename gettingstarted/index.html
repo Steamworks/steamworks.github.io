@@ -164,9 +164,9 @@
 
 <p>Next, once you have that working I would then recommend trying out an easy SteamAPI method call.</p>
 
-<p>We’ll create a new script called <code class="highlighter-rouge">SteamScript.cs</code>:</p>
+<p>We’ll create a new script called <code class="language-plaintext highlighter-rouge">SteamScript.cs</code>:</p>
 
-<p>First we’ll add <code class="highlighter-rouge">using Steamworks;</code> to the file.</p>
+<p>First we’ll add <code class="language-plaintext highlighter-rouge">using Steamworks;</code> to the file.</p>
 
 <pre><code>using UnityEngine;
 using System.Collections;
@@ -195,17 +195,17 @@ using Steamworks;</code></pre>
 
 <p>Callbacks are the most important aspect of Steamworks, they allow you to retrieve data asynchronously from Steam without locking up your game.</p>
 
-<p>One such Callback that you will likely wish to utilize is <code class="highlighter-rouge">GameOverlayActivated_t</code>. As the name implies it sends you a callback every time the Steam Overlay is activated or deactivated.</p>
+<p>One such Callback that you will likely wish to utilize is <code class="language-plaintext highlighter-rouge">GameOverlayActivated_t</code>. As the name implies it sends you a callback every time the Steam Overlay is activated or deactivated.</p>
 
 <p>To use it we will continue with our script from earlier.</p>
 
-<p>To use Callbacks in Steamworks.NET you must first declare a <code class="highlighter-rouge">protected Callback&lt;&gt;</code> at class scope as a member variable to hold onto the Callback.</p>
+<p>To use Callbacks in Steamworks.NET you must first declare a <code class="language-plaintext highlighter-rouge">protected Callback&lt;&gt;</code> at class scope as a member variable to hold onto the Callback.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	protected Callback&lt;GameOverlayActivated_t&gt; m_GameOverlayActivated;
 }</code></pre>
 
-<p>We then create our Callback by calling <code class="highlighter-rouge">Callback&lt;&gt;.Create()</code> and assigning it to m_GameOverLayActivated. This prevents the callback from being garbage collected.</p>
+<p>We then create our Callback by calling <code class="language-plaintext highlighter-rouge">Callback&lt;&gt;.Create()</code> and assigning it to m_GameOverLayActivated. This prevents the callback from being garbage collected.</p>
 
 <p>We usually do this in OnEnable as that allows us to recreate the Callback after Unity reloads assemblies.</p>
 
@@ -250,17 +250,17 @@ using Steamworks;</code></pre>
 
 <p>CallResults are very similar to Callbacks but they are the asyncronous result of a specific function call rather than a global event sink like Callbacks.</p>
 
-<p>You can identify a function that provides a CallResult by inspecting it’s return value. If it returns <code class="highlighter-rouge">SteamAPICall_t</code> then you must set up a CallResult.</p>
+<p>You can identify a function that provides a CallResult by inspecting it’s return value. If it returns <code class="language-plaintext highlighter-rouge">SteamAPICall_t</code> then you must set up a CallResult.</p>
 
 <p>In Steamworks.NET setting up a CallResult is nearly identical to Callbacks!</p>
 
-<p>First we declare a <code class="highlighter-rouge">CallResult&lt;&gt;</code> at class scope as a member variable.</p>
+<p>First we declare a <code class="language-plaintext highlighter-rouge">CallResult&lt;&gt;</code> at class scope as a member variable.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	private CallResult&lt;NumberOfCurrentPlayers_t&gt; m_NumberOfCurrentPlayers;
 }</code></pre>
 
-<p>Next we can create our CallResult with <code class="highlighter-rouge">CallResult&lt;&gt;.Create</code>. Once again we do this in OnEnable so that it gets recreated every time Unity reloads the assembilies.</p>
+<p>Next we can create our CallResult with <code class="language-plaintext highlighter-rouge">CallResult&lt;&gt;.Create</code>. Once again we do this in OnEnable so that it gets recreated every time Unity reloads the assembilies.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	private CallResult&lt;NumberOfCurrentPlayers_t&gt; m_NumberOfCurrentPlayers;
@@ -274,7 +274,7 @@ using Steamworks;</code></pre>
 
 <p>Once again, we create our function which gets called asyncronously.</p>
 
-<p>The function signature of a CallResult is slightly different than a Callback with the addition of <code class="highlighter-rouge">bool bIOFailure</code>.</p>
+<p>The function signature of a CallResult is slightly different than a Callback with the addition of <code class="language-plaintext highlighter-rouge">bool bIOFailure</code>.</p>
 
 <pre><code>public class SteamScript : MonoBehaviour {
 	private CallResult&lt;NumberOfCurrentPlayers_t&gt; m_NumberOfCurrentPlayers;
@@ -326,7 +326,7 @@ using Steamworks;</code></pre>
 
 <p>And that’s it for CallResults!</p>
 
-<p>For both Callbacks and CallResults you must be calling <code class="highlighter-rouge">SteamAPI.RunCallbacks</code> on a regular basis. <a href="/steammanager/#steamapiruncallbacks">This is done in SteamManager</a>.</p>
+<p>For both Callbacks and CallResults you must be calling <code class="language-plaintext highlighter-rouge">SteamAPI.RunCallbacks</code> on a regular basis. <a href="/steammanager/#steamapiruncallbacks">This is done in SteamManager</a>.</p>
 
 <p>Now that you have familiarized yourself with the building blocks of Steamworks check out the <a href="https://github.com/rlabrecque/Steamworks.NET-Example">Steamworks.NET Example</a> application to see an industrial strength implementation of Steamworks Stats and Achievements!</p>
 

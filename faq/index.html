@@ -164,7 +164,7 @@
 
 <p>See this <a href="https://github.com/rlabrecque/Steamworks.NET/issues/13">Github issue</a> for common causes and fixes.</p>
 
-<h3 id="the-steam-overlay-doesnt-work">The Steam Overlay doesn’t work!</h3>
+<h3 id="the-steam-overlay-doesnt-work">The Steam Overlay doesn’t work</h3>
 
 <p>For the Steam Overlay to work it must be injected before the renderer (DirectX/OpenGL) gets initialized. This is not feasible from Unity as Scripts only start running after the renderer is set up and injection is done through the <code class="language-plaintext highlighter-rouge">SteamAPI.Init()</code> API call.</p>
 
@@ -172,7 +172,7 @@
 
 <p>It is highly recommended that you set your AppId in <code class="language-plaintext highlighter-rouge">SteamAPI.RestartAppIfNecessary()</code> which can be found in SteamManager. It will relaunch your application if it is launched from the exe directly, giving you the overlay all the time.</p>
 
-<h3 id="the-steam-overlay-causes-rendering-errors">The Steam Overlay causes rendering errors!</h3>
+<h3 id="the-steam-overlay-causes-rendering-errors">The Steam Overlay causes rendering errors</h3>
 
 <p>There are many cases where the overlay does not play nice with Unity, unfortunately this happens regardless of using Steamworks.NET and we are unable to resolve Steam Overlay issues as it is out of our control.</p>
 
@@ -182,7 +182,7 @@
 
 <p>In theory it should work with any .NET based language! Documentation is only provided for C#, but many people have used it from UnityScript as well. Let me know if you’re using it from Boo or F#!</p>
 
-<h3 id="my-unity-build-doesnt-launch">My Unity build doesn’t launch!</h3>
+<h3 id="my-unity-build-doesnt-launch">My Unity build doesn’t launch</h3>
 
 <p>You are likely missing the steam_appid.txt from your output folder. Steamworks.NET does not copy it over automatically because it is not something that you should be shipping to customers.</p>
 
@@ -194,7 +194,7 @@
 
 <p>No it doesn’t. Unfortunately the Steam DRM wrapper does not play well with .NET applications such as Unity and your application will likely fail to start if it’s wrapped. Even if it does succeed and work for you it will often fail on other computers.</p>
 
-<h3 id="the-achievement-popup-only-occurs-after-i-quit-my-game">The achievement popup only occurs after I quit my game.</h3>
+<h3 id="the-achievement-popup-only-occurs-after-i-quit-my-game">The achievement popup only occurs after I quit my game</h3>
 
 <p>This is most likely either caused by not calling <code class="language-plaintext highlighter-rouge">SteamAPI.RunCallbacks()</code> at regular intervals in your game or not calling <code class="language-plaintext highlighter-rouge">SteamUserStats.StoreStats()</code> after you set an achievement.</p>
 

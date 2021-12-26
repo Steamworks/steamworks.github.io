@@ -155,26 +155,42 @@
 <h2 id="unity-instructions">Unity Instructions</h2>
 
 <ul>
-  <li>Option A: Download the .unitypackage from the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a>.
-    <ul>
-      <li>Import everything into your project’s <code class="language-plaintext highlighter-rouge">Assets/</code> folder.</li>
-    </ul>
+  <li>Option A: .unitypackage
+    <ol>
+      <li>Download the .unitypackage from the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a> page on GitHub.</li>
+      <li>Import everything into your project.</li>
+    </ol>
   </li>
-  <li>Option B: Download the latest version from the <a href="https://github.com/rlabrecque/Steamworks.NET">Github</a> master branch (<a href="https://github.com/rlabrecque/Steamworks.NET/archive/master.zip">direct link</a>).
-    <ul>
-      <li>Copy everything into your project’s <code class="language-plaintext highlighter-rouge">Assets/</code> folder. The <code class="language-plaintext highlighter-rouge">Standalone/</code> folder does not need to be imported.</li>
-      <li>You may wish to grab the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> MonoBehaviour. It is included in the unitypackage.</li>
-    </ul>
+  <li>Option B: Unity Package Manager
+    <ol>
+      <li>Open the Package Manager</li>
+      <li>Click the “+” (plus) button located in the upper left of the window</li>
+      <li>Select the “Add package from git URL…” option</li>
+      <li>Enter the following URL: <a href="https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net">https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net</a>
+Optionally specify a version number at the end like so: <a href="https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#20.0.0">https://github.com/rlabrecque/Steamworks.NET.git?path=/com.rlabrecque.steamworks.net#20.0.0</a>
+This version number can be found on the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a> page on GitHub.</li>
+      <li>Click the “Add” button and wait several seconds for the system to download and install the Steamworks.NET package from GitHub.</li>
+      <li>Optionally: Manually download the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> MonoBehavior which contains a starting point for using the Steamworks API in your project.</li>
+    </ol>
   </li>
-  <li>Launch your Unity project. The included editor scripts will copy steam_appid.txt into the root of your project.</li>
-  <li>Open the <code class="language-plaintext highlighter-rouge">steam_appid.txt</code> which now resides in the root of your Unity project and replace <code class="language-plaintext highlighter-rouge">480</code> with your own AppId.</li>
-  <li>Close Unity and relaunch the project so that it loads the freshly updated steam_appid.txt.</li>
+  <li>Option C: Manual installation
+    <ol>
+      <li>Download the latest version from the <a href="https://github.com/rlabrecque/Steamworks.NET">GitHub</a> master branch (<a href="https://github.com/rlabrecque/Steamworks.NET/archive/master.zip">direct link</a>).</li>
+      <li>Copy the <code class="language-plaintext highlighter-rouge">com.rlabrecque.steamworks.net/</code> folder into your project’s <code class="language-plaintext highlighter-rouge">Assets/</code> folder via explorer or finder, do not try to drag and drop it into Unity’s Project window.</li>
+      <li>Optionally: Manually download the <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> MonoBehaviour which contains a starting point for using the Steamworks API in your project.</li>
+    </ol>
+  </li>
+  <li>Once imported the included editor scripts will copy steam_appid.txt into the root of your project.</li>
+  <li>Open the <code class="language-plaintext highlighter-rouge">steam_appid.txt</code> which now resides in the root of your Unity project and replace <code class="language-plaintext highlighter-rouge">480</code> with your own AppId. Ensure you save this file as ASCII or UTF-8 without a BOM.</li>
+  <li>Close Unity and relaunch the project so that it loads the freshly updated <code class="language-plaintext highlighter-rouge">steam_appid.txt</code>.</li>
   <li>Head over to <a href="/gettingstarted/">Getting Started</a> to start using Steamworks.NET!</li>
 </ul>
 
 <p><em>Steamworks.NET</em> is a free project but if it helps you make money please consider donating so that I can continue to support it in the years to come!</p>
 
 <p><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=YFZZER8VNXKRC"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" alt="Support via Paypal" /></a></p>
+
+<iframe src="https://github.com/sponsors/rlabrecque/button" title="Sponsor rlabrecque" height="35" width="116" style="border: 0;"></iframe>
 
 <p>Also never ever required but greatly appreciated is a mention in your credits! It’s free, easy, and can help a lot! (<a href="http://www.mobygames.com/developer/sheet/view/developerId,714285/">Examples</a>)</p>
 
@@ -186,11 +202,11 @@
 
 <ul>
   <li>Option A: The recommended route is to build the standalone assemblies with the project file located in <code class="language-plaintext highlighter-rouge">Standalone/</code> or download the prebuilt binaries which are available on the <a href="https://github.com/rlabrecque/Steamworks.NET/releases">Releases</a> page.
-    <ul>
+    <ol>
       <li>Open the Visual Studio solution (.sln) file, build both targets one for Windows and one for OSX &amp; Linux. (Optional if you downloaded a prebuilt version)</li>
       <li>Reference the built assembly (Steamworks.NET.dll) in your project.</li>
       <li>Start coding! Call SteamAPI.Init() before initializing your renderer.</li>
-    </ul>
+    </ol>
   </li>
   <li>Option B: Otherwise, copy <code class="language-plaintext highlighter-rouge">Plugins/Steamworks.NET</code> directly into your C# project. In Visual Studio open your project properties, change to the Build tab and define <code class="language-plaintext highlighter-rouge">STEAMWORKS_WIN</code> or <code class="language-plaintext highlighter-rouge">STEAMWORKS_LIN_OSX</code> globally via <code class="language-plaintext highlighter-rouge">Conditional compilation symbols</code>.
     <ul>
@@ -230,17 +246,17 @@ Also never ever required but greatly appreciated is a mention in your credits. (
 
 <h2 id="upgrade-instructions">Upgrade Instructions</h2>
 
-<p>Upgrading Steamworks .NET is easy!</p>
+<p>Unity upgrade notice: If you’re upgrading from Steamworks.NET 15.0.1 or earlier to 20.0.0 or later, or switching between one of the 3 different installation types you MUST remove the previous install of Steamworks.NET before continuing as the project structure has changed to support the Unity Package Manager.</p>
 
-<p>If you are using the unitypackage simply open the unitypackage within your Unity project and import everything, overwriting the existing files.</p>
+<p>If you are upgrading with the Unity Package Manager, just re-import the package, and optionally bring in the latest changes from SteamManager into your project. If you’re using the #version tag, you may need to uninstall your current release before reimporting a newer version.</p>
 
-<p>If you are upgrading to a source drop from github then clone or download the latest zip and copy the <code class="language-plaintext highlighter-rouge">Editor/</code> and <code class="language-plaintext highlighter-rouge">Plugins/</code> folders into your <code class="language-plaintext highlighter-rouge">Assets/</code> folder using Windows Explorer or Finder ensuring that you overwriting everything. If you try to drop these folders into the Unity Project view then the files are often duplicated. Then grab the latest <a href="https://raw.githubusercontent.com/rlabrecque/SteamManager/master/SteamManager.cs">SteamManager</a> script and overwrite your old one, merging any changes you may have made to it.</p>
+<p>If you’re not using the Unity Package Manager, follow the Uninstallation steps below, then re-follow the installation steps above.</p>
 
 <hr />
 
 <h2 id="uninstallation">Uninstallation</h2>
 
-<p><em>Steamworks.NET</em> does not come with an easy one click uninstaller, but it stores no additional data and can be cleanly removed simply by removing the files that were initially imported. This can be quickly done simply by deleting the <code class="language-plaintext highlighter-rouge">Editor/Steamworks.NET</code>, <code class="language-plaintext highlighter-rouge">Plugins/Steamworks.NET</code>, <code class="language-plaintext highlighter-rouge">steam_api</code> binaries in <code class="language-plaintext highlighter-rouge">Plugins/x86[_64]</code>, the SteamManager.cs script, and then the <code class="language-plaintext highlighter-rouge">steam_appid.txt</code> in the root of your project.</p>
+<p><em>Steamworks.NET</em> does not come with an easy one click uninstaller, but it stores no additional data and can be cleanly removed simply by removing the files that were initially imported, or removing Steamworks.NET from the Unity Package Manager. This can be quickly done simply by deleting the <code class="language-plaintext highlighter-rouge">com.rlabrecque.steamworks.net</code> directory, the SteamManager.cs script, and then the <code class="language-plaintext highlighter-rouge">steam_appid.txt</code> in the root of your project.</p>
 
 <hr />
 

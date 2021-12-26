@@ -184,7 +184,9 @@
 
 <h3 id="my-unity-build-doesnt-launch">My Unity build doesn’t launch</h3>
 
-<p>You are likely missing the steam_appid.txt from your output folder. Steamworks.NET does not copy it over automatically because it is not something that you should be shipping to customers.</p>
+<p>Please check the logs to see if it’s Steamworks related, it could be that you’re missing the steam_appid.txt in your output folder, or aren’t running the game through steam, <code class="language-plaintext highlighter-rouge">SteamAPI.RestartAppIfNecessary()</code> might not be set. Steamworks.NET does not copy the steam_appid.txt over automatically because it is not something that you should be shipping to customers.</p>
+
+<p>If your build is shutting down due to <code class="language-plaintext highlighter-rouge">SteamAPI.Init()</code> failing as the SteamManager script does by default, double check that you own the game on your currently logged in account, otherwise follow Valve’s documentation to troubleshoot such issues.</p>
 
 <h3 id="steam-only-shows-me-playing-spacewar-how-do-i-change-it-to-my-game">Steam only shows me playing ‘SpaceWar’ how do I change it to my game?</h3>
 
@@ -205,13 +207,13 @@ Note that you will have to wrap all your code that calls Steamworks functions in
 
 <h3 id="what-versions-of-unity-are-supported">What versions of Unity are supported?</h3>
 
-<p>Steamworks.NET currently targets Unity 4.7 and 5.0+. Unity Pro is required when using 4.7.</p>
+<p>Steamworks.NET currently targets the oldest LTS release supported by Unity. Currently <a href="https://unity3d.com/unity/qa/lts-releases">Unity 2019.4</a> is the “legacy LTS”, and the oldest that Steamworks.NET officially supports.</p>
+
+<p>If you’re running an older version of Unity you can try out an older release of Steamworks.NET such as version 15.0.1 which was the last release to officially support Unity 2019.3 and older.</p>
 
 <h3 id="what-operating-systems-does-steamworksnet-support">What operating systems does Steamworks.NET support?</h3>
 
 <p>Steamworks.NET supports the combination of all of the platforms that Unity and Steam both support. On Windows this is Windows XP and newer. On macOS it’s <a href="https://support.steampowered.com/kb_article.php?ref=5953-QTIO-1764">macOS 10.11 (El Capitan)</a> and newer.</p>
-
-<p>Currently Steam/Steamworks does not support native arm64 / Apple Silicon / Apple M1.</p>
 
           </div>
           <footer>
